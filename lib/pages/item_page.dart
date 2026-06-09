@@ -15,8 +15,6 @@ class ItemPage extends StatefulWidget {
 }
 
 class _ItemPageState extends State<ItemPage> {
-  List<Widget> descriptionWidgets = [];
-
   Future<void> edit() async {
     final updatedItem = await Navigator.push(
       context,
@@ -66,19 +64,6 @@ class _ItemPageState extends State<ItemPage> {
   }
 
   @override
-  void initState() {
-    super.initState();
-
-    if (widget.item.description.isNotEmpty) {
-      descriptionWidgets = [
-        Divider(),
-        SizedBox(height: 8),
-        Text(widget.item.description),
-      ];
-    }
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -112,7 +97,12 @@ class _ItemPageState extends State<ItemPage> {
                             fontWeight: FontWeight.bold,
                           ),
                         ),
-                        ...descriptionWidgets,
+                        if (widget.item.description.isNotEmpty) ...[
+                          SizedBox(height: 4),
+                          Divider(),
+                          SizedBox(height: 8),
+                          Text(widget.item.description),
+                        ],
                         SizedBox(height: 8),
                       ],
                     ),
