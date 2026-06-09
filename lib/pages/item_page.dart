@@ -83,10 +83,13 @@ class _ItemPageState extends State<ItemPage> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Center(
-                          child: Image.network(
-                            widget.item.img,
-                            errorBuilder: (context, error, stackTrace) =>
-                                Icon(Icons.error),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(8),
+                            child: Image.network(
+                              widget.item.img,
+                              errorBuilder: (context, error, stackTrace) =>
+                                  Icon(Icons.error),
+                            ),
                           ),
                         ),
                         SizedBox(height: 16),
